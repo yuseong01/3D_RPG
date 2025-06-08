@@ -11,7 +11,7 @@ public class PlayerMoveState : IState
     public PlayerMoveState(Player player)
     {
         this.player = player;
-        this.playerTransform = player.transform;
+        this.playerTransform = player.CachedTransform;
         this.moveSpeed = player.MoveSpeed;
     }
 

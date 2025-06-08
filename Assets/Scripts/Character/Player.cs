@@ -10,11 +10,16 @@ public class Player : StateMachine
     
     public float MoveSpeed => moveSpeed;
     public float AttackRange => attackRange;
+    public Transform CachedTransform { get; private set; }
 
     //[HideInInspector] public PlayerIdleState idleState;
     [HideInInspector] public PlayerMoveState moveState;
     //[HideInInspector] public PlayerAttackState attackState;
 
+    private void Awake()
+    {
+        CachedTransform = transform;
+    }
     public void Start()
     {
         //idleState = new PlayerIdleState(this);

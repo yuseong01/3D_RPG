@@ -2,17 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : MonoBehaviour
+public class PlayerAttackState : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player player;
+    private Transform playerTransform;
+    private float attackRange;
+    private int attackDamage = 10;
+
+    private float attackCooldown = 1f;
+    private float lastAttackTime;
+
+    public PlayerAttackState(Player player)
     {
-        
+        this.player = player;
+        this.playerTransform = player.CachedTransform;
+        this.attackRange = player.AttackRange;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        Debug.Log("PlayerAttack State Enter");
+    }
+
+    public void Tick()
+    {
+        //범위 안에 들어온 Collider배열에 담아줌(OverlapSphere(position, radius, layerMask)
+        Collider[] hits = Physics.OverlapSphere(playerTransform.position, attackRange, LayerMask.GetMask("Enemy"));
+
+        if (hits.Length > 0)
+        {
+            //한마리만 테스트
+            Enemy enemy = hits[0].GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+                Debug.Log("Player attack enemy");
+                lastAttackTime = Time.time;
+            }
+        }
+        else
+        {
+            player.ChangeState(player.moveState);
+        }
+    }
+
+    public void Exit()
+    {
+        Debug.Log("Player Attack State Exit");
     }
 }
