@@ -14,7 +14,7 @@ public class Player : StateMachine
 
     //[HideInInspector] public PlayerIdleState idleState;
     [HideInInspector] public PlayerMoveState moveState;
-    //[HideInInspector] public PlayerAttackState attackState;
+    [HideInInspector] public PlayerAttackState attackState;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class Player : StateMachine
     {
         //idleState = new PlayerIdleState(this);
         moveState = new PlayerMoveState(this);
-        //attackState = new PlayerAttackState(this);
+        attackState = new PlayerAttackState(this);
 
         ChangeState(moveState);
     }

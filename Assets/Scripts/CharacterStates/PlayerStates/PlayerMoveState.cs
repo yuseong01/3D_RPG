@@ -23,6 +23,12 @@ public class PlayerMoveState : IState
     public void Tick()
     {
         playerTransform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        
+        Collider[] hits = Physics.OverlapSphere(playerTransform.position, player.AttackRange, LayerMask.GetMask("Enemy"));
+        if (hits.Length > 0)
+        {
+            player.ChangeState(player.attackState);
+        }
     }
 
     public void Exit()
