@@ -18,7 +18,7 @@ public class EnemyIdleState : IState
 
     public void Tick()
     {
-        Debug.Log("EnemyIdleState Tick ");
+        //Debug.Log("EnemyIdleState Tick ");
     }
 
     public void Exit()

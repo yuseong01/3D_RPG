@@ -26,18 +26,27 @@ public class PlayerAttackState : IState
 
     public void Tick()
     {
+        Debug.Log("때리는중");
         //범위 안에 들어온 Collider배열에 담아줌(OverlapSphere(position, radius, layerMask)
         Collider[] hits = Physics.OverlapSphere(playerTransform.position, attackRange, LayerMask.GetMask("Enemy"));
-
+        Debug.Log("적 감지 개수:"+hits.Length);
+        
         if (hits.Length > 0)
         {
             //한마리만 테스트
             Enemy enemy = hits[0].GetComponent<Enemy>();
+            if (enemy == null)
+            {
+                Debug.Log("Enemy컴포넌트를 못찾음");
+            }
             if (enemy != null)
             {
-                enemy.TakeDamage(attackDamage);
-                Debug.Log("Player attack enemy");
-                lastAttackTime = Time.time;
+                if (Time.time - lastAttackTime > attackCooldown)
+                {
+                    enemy.TakeDamage(attackDamage);
+                    Debug.Log("Player attack enemy");
+                    lastAttackTime = Time.time;
+                }
             }
         }
         else
