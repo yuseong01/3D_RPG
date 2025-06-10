@@ -10,8 +10,8 @@ public class PlayerMoveState : IState
     private Transform playerTransform;
     private NavMeshAgent agent;
     
-    private float attackRange;
-    private float detectRange;
+    private int attackRange;
+    private int detectRange;
     private float lastWanderTime;
     private float wanderCooldown = 2f;
 

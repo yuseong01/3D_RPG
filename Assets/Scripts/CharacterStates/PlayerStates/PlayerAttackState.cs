@@ -7,7 +7,7 @@ public class PlayerAttackState : IState
     private Player player;
     private PlayerStat playerStat;
     private Transform playerTransform;
-    private float attackRange;
+    private int attackRange;
     private int attackDamage;
 
     private float attackCooldown = 1f;

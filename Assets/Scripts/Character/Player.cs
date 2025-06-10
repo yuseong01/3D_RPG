@@ -9,16 +9,16 @@ public class PlayerStat
     [SerializeField] private int maxHP = 50;
     [SerializeField] private int currentHP;
     [SerializeField] private int attackDamage = 10;
-    [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float detectRange = 5f;
+    [SerializeField] private int moveSpeed = 3;
+    [SerializeField] private int attackRange = 2;
+    [SerializeField] private int detectRange = 5;
     
     public int MaxHP => maxHP;
     public int CurrentHP { get => currentHP; set => currentHP = value; }
     public int AttackDamage => attackDamage;
-    public float MoveSpeed => moveSpeed;
-    public float AttackRange => attackRange;
-    public float DetectRange => detectRange;
+    public int MoveSpeed => moveSpeed;
+    public int AttackRange => attackRange;
+    public int DetectRange => detectRange;
 }
 public class Player : StateMachine
 {
