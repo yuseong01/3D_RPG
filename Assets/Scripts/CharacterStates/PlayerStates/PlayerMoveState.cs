@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerMoveState : IState
 {
     private Player player;
+    private PlayerStat playerStat;
     private Transform playerTransform;
     private NavMeshAgent agent;
     
@@ -17,13 +18,14 @@ public class PlayerMoveState : IState
     private int enemyLayerMask;
     private Collider[] enemyColliders = new Collider[10];
 
-    public PlayerMoveState(Player player)
+    public PlayerMoveState(Player player, PlayerStat playerStat)
     {
         this.player = player;
+        this.playerStat = playerStat;
         this.playerTransform = player.CachedTransform;
         this.agent = player.Agent;
-        this.attackRange = player.AttackRange;
-        this.detectRange = player.DetectRange;
+        this.attackRange = playerStat.AttackRange;
+        this.detectRange = playerStat.DetectRange;
 
         this.enemyLayerMask = LayerMask.GetMask("Enemy");
     }

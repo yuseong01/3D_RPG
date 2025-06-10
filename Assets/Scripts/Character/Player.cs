@@ -2,24 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
-public class Player : StateMachine
+[System.Serializable]
+public class PlayerStat
 {
     [Header("Player Stat")]
+    [SerializeField] private int maxHP = 50;
+    [SerializeField] private int currentHP;
+    [SerializeField] private int attackDamage = 10;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float detectRange = 5f;
-    [SerializeField] private int attackDamage = 10;
-    [SerializeField] private int maxHP = 50;
-    [SerializeField] private int currentHP;
     
-    private NavMeshAgent agent;
-    
+    public int MaxHP => maxHP;
+    public int CurrentHP { get => currentHP; set => currentHP = value; }
+    public int AttackDamage => attackDamage;
     public float MoveSpeed => moveSpeed;
     public float AttackRange => attackRange;
     public float DetectRange => detectRange;
-    public int AttackDamage => attackDamage;
-    public int CurrentHP => currentHP;
+}
+public class Player : StateMachine
+{
+    [SerializeField] PlayerStat playerStat;
+
+    private NavMeshAgent agent;
     
     public NavMeshAgent Agent => agent;
     public Transform CachedTransform { get; private set; }
@@ -35,23 +40,22 @@ public class Player : StateMachine
     }
     public void Start()
     {
-        currentHP = maxHP;
+        playerStat.CurrentHP = playerStat.MaxHP;
         
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = moveSpeed;
+        agent.speed = playerStat.MoveSpeed;
         
-        //idleState = new PlayerIdleState(this);
-        moveState = new PlayerMoveState(this);
-        attackState = new PlayerAttackState(this);
+        moveState = new PlayerMoveState(this, playerStat);
+        attackState = new PlayerAttackState(this, playerStat);
         
         ChangeState(moveState);
     }
     
     public void TakeDamage(int damage)
     {
-        currentHP -= damage;
+        playerStat.CurrentHP -= damage;
         
-        if (CurrentHP <= 0)
+        if (playerStat.CurrentHP <= 0)
         {
             Die();
         }
@@ -68,11 +72,11 @@ public class Player : StateMachine
     {
         // 감지 범위 (빨간색 원)
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectRange);
+        Gizmos.DrawWireSphere(transform.position, playerStat.DetectRange);
 
         // 공격 범위 (노란색 원)
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, playerStat.AttackRange);
     }
 
 }

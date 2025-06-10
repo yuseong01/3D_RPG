@@ -17,8 +17,10 @@ public class UIManager : Singleton<UIManager>
 
     public void OpenStatus()
     {
-        uiMainMenu.SetActive(false);
+        //uiMainMenu.SetActive(false);
         uiStatus.SetActive(true);
+        
+        uiStatus.GetComponent<UIStatus>().SetStatus(GameManager.Instance.PlayerStat);
     }
 
     public void OpenInventory()

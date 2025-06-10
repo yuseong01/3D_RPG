@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttackState : IState
 {
     private Player player;
+    private PlayerStat playerStat;
     private Transform playerTransform;
     private float attackRange;
     private int attackDamage;
@@ -20,12 +21,13 @@ public class PlayerAttackState : IState
     Collider[] enemyColliders = new Collider[10];
 
     
-    public PlayerAttackState(Player player)
+    public PlayerAttackState(Player player, PlayerStat playerStat)
     {
         this.player = player;
+        this.playerStat = playerStat;
         this.playerTransform = player.CachedTransform;
-        this.attackRange = player.AttackRange;
-        this.attackDamage = player.AttackDamage;
+        this.attackRange = playerStat.AttackRange;
+        this.attackDamage = playerStat.AttackDamage;
         
         waitForSeconds = new WaitForSeconds(0.2f); 
 
