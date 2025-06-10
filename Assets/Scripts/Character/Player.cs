@@ -10,6 +10,8 @@ public class Player : StateMachine
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float detectRange = 5f;
     [SerializeField] private int attackDamage = 10;
+    [SerializeField] private int maxHP = 50;
+    [SerializeField] private int currentHP;
     
     private NavMeshAgent agent;
     
@@ -17,6 +19,7 @@ public class Player : StateMachine
     public float AttackRange => attackRange;
     public float DetectRange => detectRange;
     public int AttackDamage => attackDamage;
+    public int CurrentHP => currentHP;
     
     public NavMeshAgent Agent => agent;
     public Transform CachedTransform { get; private set; }
@@ -32,6 +35,8 @@ public class Player : StateMachine
     }
     public void Start()
     {
+        currentHP = maxHP;
+        
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
         
@@ -40,6 +45,23 @@ public class Player : StateMachine
         attackState = new PlayerAttackState(this);
         
         ChangeState(moveState);
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        currentHP -= damage;
+        
+        if (CurrentHP <= 0)
+        {
+            Die();
+        }
+    }
+    
+    private void Die()
+    {
+        Debug.Log("Player Dead");
+        Destroy(gameObject);
+        //게임오버
     }
     
     private void OnDrawGizmos()

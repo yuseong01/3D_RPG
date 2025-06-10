@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAttackState : IState
 {
     private Enemy enemy;
+    private Player player;
     private Transform enemyTransform;
     private Transform playerTransform;
     private float attackRange;
@@ -24,6 +25,8 @@ public class EnemyAttackState : IState
         this.attackRange = enemy.AttackRange;
         this.attackDamage = enemy.AttackDamage;
         this.waitForSeconds = new WaitForSeconds(0.2f);
+        
+        player = playerTransform.GetComponent<Player>();
     }
 
     public void Enter()
@@ -61,7 +64,10 @@ public class EnemyAttackState : IState
                 if (Time.time - lastAttackTime > attackCooldown)
                 {
                     Debug.Log("Enemy attacks player");
-                    // TODO: 플레이어에게 데미지를 주는 로직
+                    if (player != null)
+                    {
+                        player.TakeDamage(attackDamage);
+                    }
                     lastAttackTime = Time.time;
                 }
             }
