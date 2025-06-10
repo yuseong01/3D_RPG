@@ -4108,8 +4108,9 @@ MonoBehaviour:
     moveSpeed: 10
     attackRange: 2
     detectRange: 5
-  testItem1: {fileID: 11400000, guid: 3a1756f2178ef4a8a97a6bcc814f4ecf, type: 2}
-  testItem2: {fileID: 11400000, guid: cfdaa9897eaf047119007bc5f7940e0f, type: 2}
+  initialItemDataList:
+  - {fileID: 11400000, guid: cfdaa9897eaf047119007bc5f7940e0f, type: 2}
+  - {fileID: 11400000, guid: 3a1756f2178ef4a8a97a6bcc814f4ecf, type: 2}
 --- !u!4 &1374886212
 Transform:
   m_ObjectHideFlags: 0

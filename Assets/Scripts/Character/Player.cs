@@ -23,15 +23,14 @@ public class PlayerStat
 public class Player : StateMachine
 {
     [SerializeField] PlayerStat playerStat;
+    [SerializeField] private List<ItemDataSO> initialItemDataList;
     
-    List<Item> inventory = new List<Item>();
-    public IReadOnlyList<Item> Inventory => Inventory;
+    List<Item> itemList = new List<Item>();
+    
+    public IReadOnlyList<Item> ItemList => itemList;
 
     private Item equippedWeapon;
     private Item equippedAccessory;
-
-    public ItemDataSO testItem1;
-    public ItemDataSO testItem2;
     
     private NavMeshAgent agent;
     
@@ -56,10 +55,13 @@ public class Player : StateMachine
         attackState = new PlayerAttackState(this, playerStat);
         
         ChangeState(moveState);
+
+        foreach (var data in initialItemDataList)
+        {
+            itemList.Add(new Item(data));
+        }
         
-        //테스트용 아이템
-        AddItem(testItem1);
-        AddItem(testItem2);
+        UIManager.Instance.UIInventory.InitInventory(itemList);
     }
     
     public void TakeDamage(int damage)
@@ -74,12 +76,12 @@ public class Player : StateMachine
 
     public void AddItem(ItemDataSO itemData)
     {
-        inventory.Add(new Item(itemData));
+        itemList.Add(new Item(itemData));
     }
 
     public void EquipItem(Item item)
     {
-        if (!inventory.Contains(item)) return;
+        if (!itemList.Contains(item)) return;
 
         switch (item.data.itemType)
         {

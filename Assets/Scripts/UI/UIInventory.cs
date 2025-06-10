@@ -9,12 +9,15 @@ public class UIInventory : MonoBehaviour
     
     private List<UISlot> slotList = new List<UISlot>();
 
-    public void InitInventory(List<ItemDataSO> items)
+    public void InitInventory(List<Item> items)
     {
+        //기존 슬롯 제거
         foreach( Transform child in contentTransform)
             Destroy(child.gameObject);
+        slotList.Clear();
 
-        foreach (ItemDataSO item in items)
+        //새로운 슬롯 생성
+        foreach (Item item in items)
         {
             GameObject slotGO = Instantiate(slotPrefab, contentTransform);
             UISlot slot = slotGO.GetComponent<UISlot>();
