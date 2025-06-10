@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject slotPrefab;
+    [SerializeField] private Transform contentTransform; // ScrollView의 Content
+    
+    private List<UISlot> slotList = new List<UISlot>();
 
-    // Update is called once per frame
-    void Update()
+    public void InitInventory(List<ItemDataSO> items)
     {
-        
+        foreach( Transform child in contentTransform)
+            Destroy(child.gameObject);
+
+        foreach (ItemDataSO item in items)
+        {
+            GameObject slotGO = Instantiate(slotPrefab, contentTransform);
+            UISlot slot = slotGO.GetComponent<UISlot>();
+            slot.SetItem(item);
+            slotList.Add(slot);
+        }
     }
+    
+    
 }

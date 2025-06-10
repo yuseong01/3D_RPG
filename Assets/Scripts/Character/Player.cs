@@ -23,14 +23,21 @@ public class PlayerStat
 public class Player : StateMachine
 {
     [SerializeField] PlayerStat playerStat;
+    
+    List<Item> inventory = new List<Item>();
+    public IReadOnlyList<Item> Inventory => Inventory;
 
+    private Item equippedWeapon;
+    private Item equippedAccessory;
+
+    public ItemDataSO testItem1;
+    public ItemDataSO testItem2;
+    
     private NavMeshAgent agent;
     
     public NavMeshAgent Agent => agent;
     public Transform CachedTransform { get; private set; }
 
-    
-    //[HideInInspector] public PlayerIdleState idleState;
     [HideInInspector] public PlayerMoveState moveState;
     [HideInInspector] public PlayerAttackState attackState;
 
@@ -49,6 +56,10 @@ public class Player : StateMachine
         attackState = new PlayerAttackState(this, playerStat);
         
         ChangeState(moveState);
+        
+        //테스트용 아이템
+        AddItem(testItem1);
+        AddItem(testItem2);
     }
     
     public void TakeDamage(int damage)
@@ -59,6 +70,36 @@ public class Player : StateMachine
         {
             Die();
         }
+    }
+
+    public void AddItem(ItemDataSO itemData)
+    {
+        inventory.Add(new Item(itemData));
+    }
+
+    public void EquipItem(Item item)
+    {
+        if (!inventory.Contains(item)) return;
+
+        switch (item.data.itemType)
+        {
+            case ItemType.Weapon:
+                equippedWeapon = item;
+                break;
+            case ItemType.Accessory:
+                equippedAccessory = item;
+                break;
+        }
+
+        item.isEquipped = true;
+    }
+
+    public void UnequipItem(Item item)
+    {
+        if (item == equippedWeapon) equippedWeapon = null;
+        if(item == equippedAccessory) equippedAccessory = null;
+
+        item.isEquipped = false;
     }
     
     private void Die()
