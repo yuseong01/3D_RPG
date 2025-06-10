@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChaseState : MonoBehaviour
+public class EnemyChaseState : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private Enemy enemy;
+    public EnemyChaseState(Enemy enemy)
     {
-        
+        this.enemy = enemy;
+    }
+    public void Enter()
+    {
+        Debug.Log("EnemyChaseState Enter");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Tick()
     {
-        
+        Debug.Log("EnemyChaseState Tick");
+    }
+
+    public void Exit()
+    {
+        Debug.Log("EnemyChaseState Exit");
     }
 }
