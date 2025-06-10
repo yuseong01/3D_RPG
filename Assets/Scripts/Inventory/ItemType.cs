@@ -5,6 +5,6 @@ using UnityEngine;
 public enum ItemType
 {
     Weapon,
-    Consumable, //SpeedUP
-    Accessory   //DetectionRange, AttackRange
+    Consumable, //DetectionRange, AttackRange
+    Accessory   //SpeedUP
 }

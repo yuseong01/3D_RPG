@@ -72,7 +72,7 @@ public class PlayerMoveState : IState
 
     private void Wander()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * Random.Range(3f, 6f);
+        Vector3 randomDirection = Random.insideUnitSphere * Random.Range(8f, 10f);
         randomDirection += playerTransform.position;
         
         NavMeshHit hit;

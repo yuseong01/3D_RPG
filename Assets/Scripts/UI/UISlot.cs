@@ -14,33 +14,33 @@ public class UISlot : MonoBehaviour
     public void SetItem(Item item)
     {
         this.item = item;
-        
-        if (item == null || item.data == null)
-        {
-            Debug.LogError("❌ Item 또는 Item.data가 null입니다!");
-            return;
-        }
-        if (iconImage == null)
-        {
-            Debug.LogError("❌ iconImage가 에디터에서 연결되지 않았습니다!");
-            return;
-        }
-        
         iconImage.sprite = item.data.icon;
         // countText.text = item.count.ToString();
+        
+        Button button = GetComponent<Button>();
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(OnClick);
     }
 
     public void OnClick()
     {
-        if (item.isEquipped)
+        if (item.data.itemType == ItemType.Consumable)
         {
-            GameManager.Instance.Player.UnequipItem(item);
-            Debug.Log($"Unequipped: {item.data.itemName}");
+            GameManager.Instance.Player.ApplyConsumableEffect(item);
+            Debug.Log($"[Use] Consumable: {item.data.itemName}");
         }
         else
         {
-            GameManager.Instance.Player.EquipItem(item);
-            Debug.Log($"Equipped: {item.data.itemName}");
+            if (item.isEquipped)
+            {
+                GameManager.Instance.Player.UnequipItem(item);
+                Debug.Log($"Unequipped: {item.data.itemName}");
+            }
+            else
+            {
+                GameManager.Instance.Player.EquipItem(item);
+                Debug.Log($"Equipped: {item.data.itemName}");
+            }
         }
 
         // UI 갱신

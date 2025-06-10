@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
 {
+    [SerializeField] Button closeButton;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private Transform contentTransform; // ScrollView의 Content
     
@@ -26,5 +28,8 @@ public class UIInventory : MonoBehaviour
         }
     }
     
-    
+    private void Start()
+    {
+        closeButton.onClick.AddListener(() => UIManager.Instance.OpenMainMenu());
+    }
 }

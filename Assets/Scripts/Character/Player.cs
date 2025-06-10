@@ -19,12 +19,24 @@ public class PlayerStat
     public int MoveSpeed => moveSpeed;
     public int AttackRange => attackRange;
     public int DetectRange => detectRange;
+    
+    public void IncreaseDetectRange(int amount)
+    {
+        detectRange += amount;
+        Debug.Log($"[Effect] 탐지 범위 +{amount} → 현재: {detectRange}");
+    }
+
+    public void IncreaseAttackRange(int amount)
+    {
+        attackRange += amount;
+        Debug.Log($"[Effect] 공격 범위 +{amount} → 현재: {attackRange}");
+    }
 }
 public class Player : StateMachine
 {
     [SerializeField] PlayerStat playerStat;
-    [SerializeField] private List<ItemDataSO> initialItemDataList;
     
+    [SerializeField] private List<ItemDataSO> initialItemDataList;
     List<Item> itemList = new List<Item>();
     
     public IReadOnlyList<Item> ItemList => itemList;
@@ -104,6 +116,28 @@ public class Player : StateMachine
         item.isEquipped = false;
     }
     
+    public void ApplyConsumableEffect(Item item)
+    {
+        if (item.data.itemType != ItemType.Consumable) return;
+
+        switch (item.data.itemName)
+        {
+            case "DetectPotion":
+                playerStat.IncreaseDetectRange(item.data.value);
+                break;
+            case "AttackRangePotion":
+                playerStat.IncreaseAttackRange(item.data.value);
+                break;
+            default:
+                Debug.LogWarning($"알 수 없는 consumable: {item.data.itemName}");
+                break;
+        }
+
+        itemList.Remove(item);
+    }
+    
+    
+
     private void Die()
     {
         Debug.Log("Player Dead");
