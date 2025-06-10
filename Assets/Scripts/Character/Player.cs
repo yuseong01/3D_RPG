@@ -9,11 +9,15 @@ public class Player : StateMachine
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float detectRange = 5f;
+    [SerializeField] private int attackDamage = 10;
+    
     private NavMeshAgent agent;
     
     public float MoveSpeed => moveSpeed;
     public float AttackRange => attackRange;
     public float DetectRange => detectRange;
+    public int AttackDamage => attackDamage;
+    
     public NavMeshAgent Agent => agent;
     public Transform CachedTransform { get; private set; }
 
@@ -36,6 +40,17 @@ public class Player : StateMachine
         attackState = new PlayerAttackState(this);
         
         ChangeState(moveState);
+    }
+    
+    private void OnDrawGizmos()
+    {
+        // 감지 범위 (빨간색 원)
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        // 공격 범위 (노란색 원)
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
 }

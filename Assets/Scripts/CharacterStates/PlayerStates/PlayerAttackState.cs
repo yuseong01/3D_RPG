@@ -7,7 +7,7 @@ public class PlayerAttackState : IState
     private Player player;
     private Transform playerTransform;
     private float attackRange;
-    private int attackDamage = 10;
+    private int attackDamage;
 
     private float attackCooldown = 1f;
     private float lastAttackTime;
@@ -25,6 +25,7 @@ public class PlayerAttackState : IState
         this.player = player;
         this.playerTransform = player.CachedTransform;
         this.attackRange = player.AttackRange;
+        this.attackDamage = player.AttackDamage;
         
         waitForSeconds = new WaitForSeconds(0.2f); 
 
@@ -55,8 +56,6 @@ public class PlayerAttackState : IState
     
     private void AttackDetectedEnemy()
     {
-        Debug.Log("때리는중");
-        
         Enemy enemy = DetectEnemy();
         
         if (enemy != null)

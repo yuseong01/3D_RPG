@@ -11,6 +11,7 @@ public class Enemy : StateMachine
     [SerializeField] private int maxHP = 50;
     [SerializeField] private int currentHP;
     [SerializeField] private float detectionRange = 5f;
+    [SerializeField] private int attackDamage = 5;
     
     [Header("References")]
     [SerializeField] private Transform playerTransform;
@@ -21,6 +22,7 @@ public class Enemy : StateMachine
     public float AttackRange => attackRange;
     public int CurrentHP => currentHP;
     public float DetectionRange => detectionRange;
+    public int AttackDamage => attackDamage;
     
     public Transform PlayerTransform => playerTransform;
     public NavMeshAgent Agent => agent;
@@ -38,14 +40,13 @@ public class Enemy : StateMachine
         
         idleState = new EnemyIdleState(this);
         chaseState = new EnemyChaseState(this);
-        //attackState = new EnemyAttackState(this);
+        attackState = new EnemyAttackState(this);
 
         ChangeState(idleState);
     }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("공격 받는중");
         currentHP -= damage;
         
         if (CurrentHP <= 0)

@@ -16,7 +16,7 @@ public class EnemyChaseState : IState
 
     public void Tick()
     {
-        Debug.Log("EnemyChaseState Tick");
+        enemy.ChangeState(enemy.attackState);
     }
 
     public void Exit()
