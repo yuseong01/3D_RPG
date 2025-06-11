@@ -190,8 +190,8 @@ public class Player : StateMachine
     private void Die()
     {
         Debug.Log("Player Dead");
-        Destroy(gameObject);
-        //게임오버
+
+        UIManager.Instance.ShowGameOver();
     }
     
     private void OnDrawGizmos()
