@@ -50,6 +50,7 @@ FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 
 ### ✅ 게임플레이
 - 적 처치 시 10 골드 획득
 <img width="735" alt="스크린샷 2025-06-11 오후 12 44 59" src="https://github.com/user-attachments/assets/3c27048a-4474-4c7c-9262-b177a9798d01" />
+
 - 플레이어 사망 시 "Game Over" UI 표시
 - `Restart` 버튼으로 재시작 가능
 
