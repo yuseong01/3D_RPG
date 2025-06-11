@@ -27,8 +27,9 @@ FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 
 - 인벤토리 UI: 장비/소비 아이템 리스트 + 장착 여부 테두리 표시
   <img width="742" alt="스크린샷 2025-06-11 오후 12 41 26" src="https://github.com/user-attachments/assets/5270c008-9c18-41cc-94e8-d4e53b2abef3" />
   <img width="743" alt="스크린샷 2025-06-11 오후 12 41 42" src="https://github.com/user-attachments/assets/826868b9-eada-47b0-95d2-85a3e8d2b125" />
-  <img width="148" alt="스크린샷 2025-06-11 오후 12 42 00" src="https://github.com/user-attachments/assets/cbc94fde-db0f-4d14-ad48-b6508f42f43e" />
-  <img width="145" alt="스크린샷 2025-06-11 오후 12 42 09" src="https://github.com/user-attachments/assets/cd789c22-bb47-4980-bcca-fe6addea36b3" />
+----------------
+<img width="148" alt="스크린샷 2025-06-11 오후 12 42 00" src="https://github.com/user-attachments/assets/cbc94fde-db0f-4d14-ad48-b6508f42f43e" />
+<img width="145" alt="스크린샷 2025-06-11 오후 12 42 09" src="https://github.com/user-attachments/assets/cd789c22-bb47-4980-bcca-fe6addea36b3" />
 
 - 상태창 UI: 기본 스탯 + 보너스 스탯 `(ex. 탐지거리 5 (+3))`
   <img width="741" alt="image" src="https://github.com/user-attachments/assets/1bce8ad1-4b54-44c3-93d9-e63cb1358e9e" />
@@ -42,11 +43,12 @@ FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 
 - `ScriptableObject` 기반 아이템 관리
 - 아이템 타입: `무기`, `악세서리`, `소비 아이템`
 - 장비 시 스탯 증가, 소비 시 효과 적용 후 제거
-  <img width="346" alt="스크린샷 2025-06-11 오후 12 44 19" src="https://github.com/user-attachments/assets/049cf9ea-c47c-4305-a2ad-85cc8b1778c3" />
+--------
+<img width="346" alt="스크린샷 2025-06-11 오후 12 44 19" src="https://github.com/user-attachments/assets/049cf9ea-c47c-4305-a2ad-85cc8b1778c3" />
 
 ### ✅ 게임플레이
 - 적 처치 시 10 골드 획득
-  <img width="735" alt="스크린샷 2025-06-11 오후 12 44 59" src="https://github.com/user-attachments/assets/3c27048a-4474-4c7c-9262-b177a9798d01" />
+<img width="735" alt="스크린샷 2025-06-11 오후 12 44 59" src="https://github.com/user-attachments/assets/3c27048a-4474-4c7c-9262-b177a9798d01" />
 - 플레이어 사망 시 "Game Over" UI 표시
 - `Restart` 버튼으로 재시작 가능
 
