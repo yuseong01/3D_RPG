@@ -22,6 +22,8 @@ FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 
 
 ### ✅ UI 시스템
 - 메인 메뉴 UI: 닉네임, 레벨, 설명, 체력 바, 골드 텍스트, 인벤토리 및 상태창 버튼 표시
+  <img width="737" alt="스크린샷 2025-06-11 오후 12 48 08" src="https://github.com/user-attachments/assets/0a7f52ed-0980-4056-bd1b-9f8928819fae" />
+
 - 인벤토리 UI: 장비/소비 아이템 리스트 + 장착 여부 테두리 표시
 <img width="742" alt="스크린샷 2025-06-11 오후 12 41 26" src="https://github.com/user-attachments/assets/5270c008-9c18-41cc-94e8-d4e53b2abef3" />
 <img width="743" alt="스크린샷 2025-06-11 오후 12 41 42" src="https://github.com/user-attachments/assets/826868b9-eada-47b0-95d2-85a3e8d2b125" />
