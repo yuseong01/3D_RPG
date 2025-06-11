@@ -19,7 +19,6 @@ FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 
 - 상태(StateMachine) 기반 이동 및 공격 FSM
 - AI Navigation 시스템 (NavMeshAgent 기반 경로 탐색)
 <img width="709" alt="스크린샷 2025-06-11 오후 12 34 23" src="https://github.com/user-attachments/assets/653007ff-c9ed-4c54-8044-28c33e1d7cc9" />
-<img width="658" alt="스크린샷 2025-06-11 오후 12 34 44" src="https://github.com/user-attachments/assets/01390fb1-fae8-4250-adab-e487f6a0dfc4" />
 
 ### ✅ UI 시스템
 - 메인 메뉴 UI: 닉네임, 레벨, 설명, 체력 바, 골드 텍스트, 인벤토리 및 상태창 버튼 표시
