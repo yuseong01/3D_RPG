@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class UIInventory : MonoBehaviour
     [SerializeField] Button closeButton;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private Transform contentTransform; // ScrollView의 Content
+    [SerializeField] private TMP_Text inventoryNumberText;
+    [SerializeField] private int maxInventoryCount = 120;
     
     private List<UISlot> slotList = new List<UISlot>();
 
@@ -26,6 +29,8 @@ public class UIInventory : MonoBehaviour
             slot.SetItem(item);
             slotList.Add(slot);
         }
+        
+        inventoryNumberText.text = $"{items.Count}/{maxInventoryCount}";
     }
     
     private void Start()

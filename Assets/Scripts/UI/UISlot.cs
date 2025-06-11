@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UISlot : MonoBehaviour
 {
     [SerializeField] private Image iconImage;
+    [SerializeField] private GameObject outlineImage;
     //[SerializeField] private TMP_Text countText;
     
     private Item item;
@@ -16,6 +17,9 @@ public class UISlot : MonoBehaviour
         this.item = item;
         iconImage.sprite = item.data.icon;
         // countText.text = item.count.ToString();
+        
+        if (outlineImage != null)
+            outlineImage.SetActive(item.isEquipped);
         
         Button button = GetComponent<Button>();
         button.onClick.RemoveAllListeners();
