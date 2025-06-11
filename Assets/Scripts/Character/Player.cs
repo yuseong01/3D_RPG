@@ -5,7 +5,10 @@ using UnityEngine.AI;
 [System.Serializable]
 public class PlayerStat
 {
-    [Header("Player Stat")]
+    [Header("Player Stat")] [SerializeField]
+    private string name = "SOLDIER";
+    private string description = "I love chicken";
+    private int level = 1;
     [SerializeField] private int maxHP = 50;
     [SerializeField] private int currentHP;
     [SerializeField] private int attackDamage = 10;
@@ -19,6 +22,9 @@ public class PlayerStat
     private int bonusAttackDamage = 0;
     private int bonusHp = 0;
     
+    public string Name => name;
+    public string Description => description;
+    public int Level => level;
     public int MaxHP => maxHP;
     public int CurrentHP { get => currentHP+bonusHp; set => currentHP = value; }
 

@@ -19,8 +19,8 @@ public class UIMainMenu : MonoBehaviour
     void Start()
     {
         stat = GameManager.Instance.PlayerStat;
-        nicknameText.text = "YUSEONG";
-        descriptionText.text = "I love chicken";
+        nicknameText.text = stat.Name;
+        descriptionText.text = stat.Description;
         
         statusButton.onClick.AddListener(OnStatusButtonClick);
         inventoryButton.onClick.AddListener(OnInventoryButtonClick);
@@ -28,7 +28,7 @@ public class UIMainMenu : MonoBehaviour
 
     void Update()
     {
-        levelText.text = "1";   //나중에 레벨 연계시스템
+        levelText.text = stat.Level.ToString();   //TODO: 나중에 레벨 연계시스템 추가
         goldText.text = GameManager.Instance.Gold.ToString();
         
         healthSlider.maxValue = stat.MaxHP;
