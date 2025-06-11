@@ -19,6 +19,8 @@ public class GameManager : Singleton<GameManager>
             player = FindObjectOfType<Player>();
             playerStat = player.GetComponent<PlayerStat>();
         }
+
+        playerStat = player.Stat;
         
         UIManager.Instance.OpenMainMenu();
     }

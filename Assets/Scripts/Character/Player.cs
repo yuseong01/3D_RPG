@@ -13,12 +13,28 @@ public class PlayerStat
     [SerializeField] private int attackRange = 2;
     [SerializeField] private int detectRange = 5;
     
+    private int bonusAttackRange = 0;
+    private int bonusDetectRange = 0;
+    private int bonusMoveSpeed = 0;
+    private int bonusAttackDamage = 0;
+    private int bonusHp = 0;
+    
     public int MaxHP => maxHP;
-    public int CurrentHP { get => currentHP; set => currentHP = value; }
-    public int AttackDamage => attackDamage;
-    public int MoveSpeed => moveSpeed;
-    public int AttackRange => attackRange;
-    public int DetectRange => detectRange;
+    public int CurrentHP { get => currentHP+bonusHp; set => currentHP = value; }
+
+    public int AttackDamage => attackDamage + bonusAttackDamage;
+    public int MoveSpeed => moveSpeed + bonusMoveSpeed;
+    public int AttackRange => attackRange + bonusAttackRange;
+    public int DetectRange => detectRange + bonusDetectRange;
+    
+    public int BaseAttackRange => attackRange;
+    public int BonusAttackRange { get => bonusAttackRange; set => bonusAttackRange = value; }
+    public int BaseDetectRange => detectRange;
+    public int BonusDetectRange { get => bonusDetectRange; set => bonusDetectRange = value; }
+    public int BaseMoveSpeed => moveSpeed;
+    public int BonusMoveSpeed { get => bonusMoveSpeed; set => bonusMoveSpeed = value; }
+    public int BaseAttackDamage => attackDamage;
+    public int BonusAttackDamage { get => bonusAttackDamage; set => bonusAttackDamage = value; }
     
     public void IncreaseDetectRange(int amount)
     {
@@ -31,10 +47,24 @@ public class PlayerStat
         attackRange += amount;
         Debug.Log($"[Effect] 공격 범위 +{amount} → 현재: {attackRange}");
     }
+
+    public void IncreaseMoveSpeed(int amount)
+    {
+        moveSpeed += amount;
+        Debug.Log($"[Effect] 이동속도 +{amount} → 현재: {moveSpeed}");
+    }
+    
+    public void IncreaseAttackDamage(int amount)
+    {
+        attackDamage += amount;
+        Debug.Log($"[Effect] 공격데미지 +{amount} → 현재: {attackDamage}");
+    }
 }
 public class Player : StateMachine
 {
     [SerializeField] PlayerStat playerStat;
+    public PlayerStat Stat => playerStat;
+
     
     [SerializeField] private List<ItemDataSO> initialItemDataList;
     List<Item> itemList = new List<Item>();
@@ -99,9 +129,11 @@ public class Player : StateMachine
         {
             case ItemType.Weapon:
                 equippedWeapon = item;
+                playerStat.BonusAttackDamage += item.data.value;
                 break;
             case ItemType.Accessory:
                 equippedAccessory = item;
+                playerStat.BonusMoveSpeed += item.data.value;
                 break;
         }
 
@@ -110,8 +142,17 @@ public class Player : StateMachine
 
     public void UnequipItem(Item item)
     {
-        if (item == equippedWeapon) equippedWeapon = null;
-        if(item == equippedAccessory) equippedAccessory = null;
+        if (item == equippedWeapon)
+        {
+            playerStat.BonusAttackDamage -= item.data.value;
+            equippedWeapon = null;
+        }
+
+        if (item == equippedAccessory)
+        {
+            playerStat.BonusMoveSpeed -= item.data.value;
+            equippedAccessory = null;
+        }
 
         item.isEquipped = false;
     }
@@ -123,9 +164,11 @@ public class Player : StateMachine
         switch (item.data.itemName)
         {
             case "DetectPotion":
+                playerStat.BonusDetectRange += item.data.value;
                 playerStat.IncreaseDetectRange(item.data.value);
                 break;
             case "AttackRangePotion":
+                playerStat.BonusAttackRange += item.data.value;
                 playerStat.IncreaseAttackRange(item.data.value);
                 break;
             default:

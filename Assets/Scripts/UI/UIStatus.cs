@@ -17,10 +17,18 @@ public class UIStatus : MonoBehaviour
     public void SetStatus(PlayerStat playerStat)
     {
         hpText.text = playerStat.MaxHP.ToString();
-        attackText.text = playerStat.AttackDamage.ToString();
-        moveSpeedText.text = playerStat.MoveSpeed.ToString();
-        attackRangeText.text = playerStat.AttackRange.ToString();
-        detectRangeText.text = playerStat.DetectRange.ToString();
+        attackText.text = playerStat.BonusAttackDamage > 0
+            ? $"{playerStat.BaseAttackDamage} (+{playerStat.BonusAttackDamage})"
+            : playerStat.AttackDamage.ToString();
+        moveSpeedText.text = playerStat.BonusMoveSpeed > 0
+            ? $"{playerStat.BaseMoveSpeed} (+{playerStat.BonusMoveSpeed})"
+            : playerStat.MoveSpeed.ToString();
+        attackRangeText.text = playerStat.BonusAttackRange > 0
+            ? $"{playerStat.BaseAttackRange} (+{playerStat.BonusAttackRange})"
+            : playerStat.AttackRange.ToString();
+        detectRangeText.text = playerStat.BonusDetectRange > 0
+            ? $"{playerStat.BaseDetectRange} (+{playerStat.BonusDetectRange})"
+            : playerStat.DetectRange.ToString();
 
     }
     private void Start()
