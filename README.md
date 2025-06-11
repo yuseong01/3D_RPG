@@ -1,4 +1,4 @@
-# 🛡️ Unity RPG Project - YUSEONG
+# 🛡️ Unity 3D RPG Project
 
 이 프로젝트는 Unity 기반의 3D 방치형 RPG 게임 프로토타입 및 인벤토리시스템 입니다.  
 FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 플레이어 스탯 관리, Cinemachine 카메라, 그리고 UI 인터페이스를 구현하였습니다.
