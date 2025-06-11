@@ -14,8 +14,6 @@ FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 
 - 장비 착용/해제 기능 (`무기`, `악세서리`)
 - 소비 아이템 사용 시 스탯 증가
 <img width="774" alt="스크린샷 2025-06-11 오후 12 33 08" src="https://github.com/user-attachments/assets/864694e4-3bf3-4491-abb5-bcd470a5372d" />
-![image](https://github.com/user-attachments/assets/580560b6-54e4-4860-acc9-f2b738cde5f6)
-
 
 ### ✅ Enemy 시스템
 - 상태(StateMachine) 기반 이동 및 공격 FSM
