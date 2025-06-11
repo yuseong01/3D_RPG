@@ -28,6 +28,7 @@ FSM 기반의 전투 시스템, 플레이어 & 적AI, 인벤토리 & 장비 UI, 
   <img width="742" alt="스크린샷 2025-06-11 오후 12 41 26" src="https://github.com/user-attachments/assets/5270c008-9c18-41cc-94e8-d4e53b2abef3" />
   <img width="743" alt="스크린샷 2025-06-11 오후 12 41 42" src="https://github.com/user-attachments/assets/826868b9-eada-47b0-95d2-85a3e8d2b125" />
 ----------------
++ Consumable 아이템은 사용시 사라짐
 <img width="148" alt="스크린샷 2025-06-11 오후 12 42 00" src="https://github.com/user-attachments/assets/cbc94fde-db0f-4d14-ad48-b6508f42f43e" />
 <img width="145" alt="스크린샷 2025-06-11 오후 12 42 09" src="https://github.com/user-attachments/assets/cd789c22-bb47-4980-bcca-fe6addea36b3" />
 
