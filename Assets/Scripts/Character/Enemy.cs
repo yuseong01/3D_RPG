@@ -57,6 +57,7 @@ public class Enemy : StateMachine
 
     private void Die()
     {
+        GameManager.Instance.Gold += 10;
         Debug.Log("Enemy Dead");
         Destroy(gameObject);
     }

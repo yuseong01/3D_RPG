@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,5 +42,10 @@ public class UIManager : Singleton<UIManager>
         uiStatus.SetActive(false);
         uiInventory.SetActive(true);
         
+    }
+
+    public void UpdateGold(int amount)
+    {
+        uiMainMenu.GetComponent<UIMainMenu>().SetGoldText(amount);
     }
 }
